@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>Custom Vocabulary Builder</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="py-5 text-center">
+            <h2>Custom Vocabulary Builder</h2>
+            <p class="lead">Create a custom vocabulary for Amazon Transcribe.</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 order-md-2 mb-4">
+                <form class="needs-validation" novalidate>
+                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-muted">Phrase Audio Preview</span>
+                    </h4>
+
+                    <div class="mb-3">
+                        <label for="accesskey">Access Key</label>
+                        <input type="accesskey" class="form-control" id="accesskey" placeholder="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="secretkey">Secret Key</label>
+                        <input type="secretkey" class="form-control" id="secretkey" placeholder="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="sessiontoken">Session Token <span class="text-muted">(Optional)</span></label>
+                        <input type="sessiontoken" class="form-control" id="sessiontoken" placeholder="">
+                    </div>
+
+                    <hr class="mb-4">
+
+                    <button id="preview" class="btn btn-primary btn-lg btn-block" type="button">Generate Audio Preview</button>
+
+                </form>
+
+                <br />
+
+                <audio id="audio" controls>
+                    <source type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+            <div class="col-md-8 order-md-1">
+                <form class="needs-validation" novalidate>
+
+                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-muted">Phrase</span>
+                    </h4>
+
+                    <div class="mb-3">
+                        <label for="text">Text</label>
+                        <input type="text" class="form-control" id="text" placeholder="L.A.">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="soundslike">Sounds Like <span class="text-muted">(Optional)</span></label>
+                        <input type="soundslike" class="form-control" id="soundslike" placeholder="el-ay">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ipa">IPA <span class="text-muted">(Optional)</span></label>
+                        <input type="ipa" class="form-control" id="ipa" placeholder="ɛ l eɪ">
+                    </div>
+
+                    <p class="text-muted">Consonants</p>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="b" type="button"><b>b</b>ed</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="d" type="button"><b>d</b>ig</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="d͡ʒ" type="button"><b>j</b>ump</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="ð" type="button"><b>th</b>en</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="f" type="button"><b>f</b>ive</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="g" type="button"><b>g</b>ame</button>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="h" type="button"><b>h</b>ouse</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="j" type="button"><b>y</b>es</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="k" type="button"><b>c</b>at</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="l" type="button"><b>l</b>ay</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="l̩" type="button">batt<b>le</b></button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="m" type="button"><b>m</b>ouse</button>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="m̩" type="button">anth<b>em</b></button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="n" type="button"><b>n</b>ap</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="n̩" type="button"><b>n</b>o</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="ŋ" type="button">thi<b>ng</b></button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="p" type="button"><b>p</b>in</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="ɹ" type="button"><b>r</b>ed</button>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="s" type="button"><b>s</b>eem</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="ʃ" type="button"><b>sh</b>ip</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="t" type="button"><b>t</b>ask</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="t͡ʃ" type="button">ch<b>art</b></button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="Θ" type="button"><b>th</b>in</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="v" type="button"><b>v</b>est</button>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="w" type="button"><b>w</b>est</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="z" type="button"><b>z</b>ero</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="ʒ" type="button">vi<b>s</b>ion</button>
+                        </div>
+                    </div>
+                    <br />
+
+                    <p class="text-muted">Vowels</p>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="ə" type="button"><b>a</b>ren<b>a</b></button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="əʊ" type="button">g<b>oa</b>t</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="æ" type="button">tr<b>a</b>p</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="aɪ" type="button">pr<b>i</b>ce</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="aʊ" type="button">m<b>ou</b>th</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="ɑː" type="button">f<b>a</b>ther</button>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="eɪ" type="button">f<b>a</b>ce</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="ɜː" type="button">n<b>ur</b>se</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="ɛ" type="button">dr<b>e</b>ss</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="ɛə" type="button">squ<b>are</b></button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="Θ" type="button"><b>th</b>in</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="i:" type="button">fl<b>ee</b>ce</button>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="ɪ" type="button">k<b>i</b>t</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="ɪə" type="button">n<b>ear</b></button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="ɔː" type="button">th<b>ou</b>ght</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="ɔɪ" type="button">ch<b>oi</b>ce</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="ɒ" type="button">l<b>o</b>t</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="u:" type="button">g<b>oo</b>se</button>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="ʊ" type="button">f<b>oo</b>t</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="ʊə" type="button">c<b>u</b>re</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-secondary btn-sm btn-block" data-ipa="ʌ" type="button">str<b>u</b>t</button>
+                        </div>
+                    </div>
+                    <br />
+
+                    <div class="mb-3">
+                        <label for="displayas">Display As <span class="text-muted">(Optional)</span></label>
+                        <input type="displayas" class="form-control" id="displayas" placeholder="LA">
+                    </div>
+
+                    <button id="add" class="btn btn-primary btn-lg btn-block" type="button">Add</button>
+
+                    <hr class="mb-4">
+
+                    <div class="form-group">
+                        <label for="result">Custom Vocabulary File</label>
+                        <textarea disabled class="form-control" id="result" rows="10"></textarea>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.721.0.min.js"></script>
+    <script>
+        function synthSpeech() {
+            AWS.config.region = 'ap-southeast-2'; 
+            AWS.config.credentials = new AWS.Credentials({
+                accessKeyId: document.getElementById('accesskey').value,
+                secretAccessKey: document.getElementById('secretkey').value,
+                sessionToken: document.getElementById('sessiontoken').value
+            });
+
+            var speechParams = {
+                OutputFormat: "mp3",
+                SampleRate: "16000",
+                Text: `<speak>No input entered</speak>`,
+                TextType: "ssml",
+                VoiceId: "Russell",
+                LanguageCode: "en-AU"
+                //Engine: "neural"
+            };
+            if (document.getElementById('ipa').value != "") {
+                speechParams.Text = `<speak><prosody rate="slow"><phoneme alphabet="ipa" ph="${document.getElementById('ipa').value}">${document.getElementById('text').value}</phoneme></prosody></speak>`;
+            } else if (document.getElementById('text').value != "") {
+                speechParams.Text = `<speak><prosody rate="slow">${document.getElementById('text').value}</prosody></speak>`;
+            }
+
+            var polly = new AWS.Polly({apiVersion: '2016-06-10'});
+            var signer = new AWS.Polly.Presigner(speechParams, polly)
+        
+            // Create presigned URL of synthesized speech file
+            signer.getSynthesizeSpeechUrl(speechParams, function(err, url) {
+                if (err) {
+                    console.error(err);
+                } else {
+                    console.log(url);
+                    document.getElementById('audio').src = url;
+                    document.getElementById('audio').play();
+                }
+            });
+        }
+        document.getElementById('preview').onclick = synthSpeech;
+
+        function addEntry() {
+            document.getElementById('result').innerHTML += document.getElementById('text').value + "\t" +
+                document.getElementById('soundslike').value + "\t" +
+                document.getElementById('ipa').value + "\t" +
+                document.getElementById('displayas').value + "\n";
+
+            document.getElementById('text').value = '';
+            document.getElementById('soundslike').value = '';
+            document.getElementById('ipa').value = '';
+            document.getElementById('displayas').value = '';
+            document.getElementById('text').focus();
+        }
+        document.getElementById('add').onclick = addEntry;
+        
+        document.querySelectorAll("button[data-ipa]").forEach(el => {
+            el.onclick = function(ev) {
+                var phoneme = ev.srcElement.getAttribute('data-ipa');
+                if (phoneme) {
+                    if (document.getElementById('ipa').value != "") {
+                        document.getElementById('ipa').value += " ";
+                    }
+                    document.getElementById('ipa').value += ev.srcElement.getAttribute('data-ipa');
+                }
+            };
+        });
+
+        document.getElementById('result').innerHTML = "Phrase\tSoundsLike\tIPA\tDisplayAs\n";
+    </script>
+</body>
+
+</html>
